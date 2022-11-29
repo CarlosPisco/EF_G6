@@ -17,7 +17,7 @@ public class Impresion3D {
         this.idImpresion3D = idImpresion3D;
     }
 
-    public boolean isAutoservicio() {
+    public boolean getAutoservicio() {
         return autoservicio;
     }
 
