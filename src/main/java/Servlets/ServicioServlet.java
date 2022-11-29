@@ -1,9 +1,10 @@
 package Servlets;
 
-import Beans.Impresion3D;
+import Beans.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import sun.util.resources.cldr.ext.TimeZoneNames_ps_PK;
 
 import java.io.IOException;
 
@@ -58,7 +59,37 @@ public class ServicioServlet extends HttpServlet {
             case("Impresion3D"):
                 Impresion3D impresion3D = new Impresion3D();
 
+                DensidadPieza dp =  new DensidadPieza();
                 int densidad = Integer.parseInt(request.getParameter("densidad"));
+                dp.setDensidadPieza(densidad);
+                impresion3D.setDensidadPieza(dp);
+
+                Grosor Grosor = new Grosor();
+                String grosor = request.getParameter("grosor");
+                Grosor.setGrosor(grosor);
+                impresion3D.setGrosor(Grosor);
+
+                Altura Altura = new Altura();
+                double altura = Double.parseDouble(request.getParameter("alturaCapa"));
+                Altura.setAltura(altura);
+                impresion3D.setAltura(Altura);
+
+                Material3D Material3D = new Material3D();
+                String material3d = request.getParameter("Material");
+                Material3D.setMaterial3D(material3d);
+                impresion3D.setMaterial3D(Material3D);
+
+                String autoserv = request.getParameter("autoservicio");
+                boolean autoServicio = false;
+                if(autoserv.equals("si")){
+                    autoServicio = true;
+                }
+                impresion3D.setAutoservicio(autoServicio);
+
+                impresion3D.setUrlImagen(request.getParameter("urlImagen"));
+
+
+                request.setAttribute("impresion3D",impresion3D);
 
 
                 // se reciben los datos del registro y se le mandan al resumen para calcular el costo
@@ -69,6 +100,27 @@ public class ServicioServlet extends HttpServlet {
 
             case("CorteLaser"):
                 // se reciben los datos del registro y se le mandan al resumen para calcular el costo
+
+                CorteLaser corteLaser = new CorteLaser();
+
+                GrosorLinea GrosorLinea = new GrosorLinea();
+                String grosorlinea = request.getParameter("grosor");
+                GrosorLinea.setGrosorLinea(grosorlinea);
+                corteLaser.setGrosorLinea(GrosorLinea);
+
+                ColorLinea colorLinea = new ColorLinea();
+                String colorlinea = request.getParameter("color");
+                colorLinea.setColorLinea(colorlinea);
+                corteLaser.setColorLinea(colorLinea);
+
+                Material Material = new Material();
+                String material = request.getParameter("material");
+                Material.setMaterial(material);
+                corteLaser.setMaterial(Material);
+
+
+
+
                 view = request.getRequestDispatcher("/Servicio/Resumen.jsp");
                 view.forward(request, response);
                 break;

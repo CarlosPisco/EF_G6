@@ -82,7 +82,7 @@
         <div class="mb-3">
             <label class="form-label">Autoservicio</label>
 
-            <select class="form-select" aria-label="Default select example" name="tipoUsuario">
+            <select class="form-select" aria-label="Default select example" name="autoservicio">
                 <option value="si">si</option>
                 <option value="no">no</option>
             </select>
