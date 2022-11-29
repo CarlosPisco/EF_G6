@@ -46,6 +46,8 @@ values("Impresion 3D"),
 insert into TipoUsuario(tipoUsuario)
 values("interno"),
 ("externo");
-      
-       
+
+insert into Usuarios (nombre, apellido, correo, contrasenia, idTipoUsuario)
+					values ("Leonardo", "Abanto", "a20201696@pucp.edu.pe", sha2("clashroyale123",512),1);
+                                 
             
